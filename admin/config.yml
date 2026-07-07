@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "_products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Product ID", name: "id", widget: "number", required: true}
+      - {label: "Product Name", name: "name", widget: "string", required: true}
+      - {label: "Category", name: "category", widget: "select", options: ["Interior", "Exterior", "Modification", "Cover", "Android", "Music", "PPF", "GPS", "Electronics", "Protection", "Security"], required: true}
+      - {label: "Price", name: "price", widget: "number", required: true}
+      - {label: "Old Price", name: "oldPrice", widget: "number", required: false}
+      - {label: "Image", name: "image", widget: "image", required: true}
+      - {label: "Description", name: "description", widget: "text", required: true}
