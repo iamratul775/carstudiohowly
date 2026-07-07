@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="CAR STUDIO HOWLY - Premium Car Wash & Accessories.">
+<title>CAR STUDIO HOWLY | Premium Car Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+:root {
+--primary: #0f172a;
+--secondary: #1e293b;
+--accent: #3b82f6;
+--accent-hover: #2563eb;
+--success: #10b981;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #334155;
+--text-light: #64748b;
+--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+background-color: var(--bg);
+color: var(--text);
+font-family: 'Inter', sans-serif;
+line-height: 1.6;
+overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.2; }
+a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+button { font-family: 'Inter', sans-serif; }
+.reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+header {
+background: white;
+color: var(--primary);
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: var(--shadow-md);
+}
+.header-top {
+background: var(--bg-alt);
+padding: 8px 0;
+font-size: 0.8em;
+border-bottom: 1px solid #e2e8f0;
+}
+.header-top-content {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.header-contact { display: flex; gap: 15px; align-items: center; }
+.header-contact a { display: flex; align-items: center; gap: 5px; color: var(--text-light); }
+.header-contact a:hover { color: var(--accent); }
+.header-main {
+max-width: 1200px;
+margin: 0 auto;
+padding: 12px 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo {
+width: 42px; height: 42px;
+background: var(--accent);
+border-radius: 10px;
+display: flex; align-items: center; justify-content: center;
+color: white; font-size: 1.2em;
+}
+.brand-text h1 { font-size: 1.2em; color: var(--primary); margin-bottom: 0; }
+.brand-text p { font-size: 0.75em; color: var(--text-light); font-weight: 500; }
+.main-nav { display: flex; gap: 5px; }
+.main-nav a {
+padding: 8px 12px; border-radius: 8px;
+font-weight: 600; font-size: 0.85em; color: var(--text);
+}
+.main-nav a:hover, .main-nav a.active { background: var(--accent); color: white; }
+.mobile-menu-btn { display: none; background: none; border: none; color: var(--primary); font-size: 1.5em; cursor: pointer; }
+.sub-nav {
+position: sticky;
+top: 105px;
+background: white;
+border-bottom: 1px solid #e2e8f0;
+z-index: 999;
+overflow-x: auto;
+white-space: nowrap;
+padding: 10px 15px;
+scrollbar-width: none;
+box-shadow: var(--shadow-sm);
+}
+.sub-nav::-webkit-scrollbar { display: none; }
+.sub-nav-inner {
+display: flex;
+gap: 10px;
+max-width: 1200px;
+margin: 0 auto;
+justify-content: center;
+}
+.sub-nav a {
+padding: 8px 18px;
+background: var(--bg-alt);
+border-radius: 25px;
+font-weight: 600;
+font-size: 0.85em;
+color: var(--text);
+flex-shrink: 0;
+border: 1px solid #e2e8f0;
+}
+.sub-nav a:active, .sub-nav a.active {
+background: var(--accent);
+color: white;
+border-color: var(--accent);
+}
+.hero { background: white; padding: 40px 15px 30px; }
+.hero-content { max-width: 1200px; margin: 0 auto; }
+.hero-top { display: flex; justify-content: center; margin-bottom: 25px; }
+.hero-search-icon {
+display: flex; align-items: center; gap: 8px;
+padding: 8px 16px; background: var(--bg-alt);
+border-radius: 50px; border: 1px solid #e2e8f0;
+font-size: 0.85em; cursor: pointer;
+}
+.hero-search-icon:active { transform: scale(0.95); }
+.hero-text { text-align: center; max-width: 700px; margin: 0 auto; }
+.hero-text h2 { font-size: 1.8em; color: var(--primary); margin-bottom: 12px; }
+.hero-text h2 span { color: var(--accent); display: block; }
+.hero-text p { font-size: 0.95em; color: var(--text-light); margin-bottom: 15px; }
+.hero-inline-stats {
+display: flex;
+gap: 12px;
+justify-content: center;
+align-items: center;
+margin-top: 15px;
+font-size: 0.85em;
+color: var(--text-light);
+font-weight: 600;
+flex-wrap: wrap;
+}
+.hero-inline-stats span { display: flex; align-items: center; gap: 5px; }
+.hero-inline-stats i { color: var(--accent); }
+.hero-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.btn {
+display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9em;
+cursor: pointer; border: none; transition: all 0.3s;
+}
+.btn:active { transform: scale(0.95); }
+.btn-success { background: var(--success); color: white; }
+.btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+.btn-primary { background: var(--accent); color: white; }
+.booking-banner-wrapper {
+padding: 20px 15px;
+max-width: 1200px;
+margin: 0 auto;
+}
+.booking-banner {
+display: flex;
+align-items: center;
+gap: 15px;
+background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+color: white;
+padding: 20px;
+border-radius: 16px;
+text-decoration: none;
+box-shadow: var(--shadow-lg);
+transition: transform 0.3s;
+max-width: 600px;
+margin: 0 auto;
+}
+.booking-banner:active { transform: scale(0.98); }
+.booking-banner i:first-child { font-size: 2em; }
+.booking-banner div { flex: 1; text-align: left; }
+.booking-banner strong { display: block; font-size: 1.1em; margin-bottom: 2px; }
+.booking-banner span { font-size: 0.85em; opacity: 0.9; }
+.booking-banner i:last-child { font-size: 1.5em; }
+.section { padding: 40px 15px; max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 25px; }
+.section-title h2 { font-size: 1.5em; color: var(--primary); margin-bottom: 5px; }
+.section-title p { color: var(--text-light); font-size: 0.9em; }
+.services { background: var(--bg-alt); }
+.services-grid {
+display: flex;
+overflow-x: auto;
+gap: 12px;
+padding-bottom: 10px;
+scrollbar-width: none;
+justify-content: flex-start;
+}
+.services-grid::-webkit-scrollbar { display: none; }
+.service-card {
+background: white;
+padding: 15px;
+border-radius: 12px;
+text-align: center;
+box-shadow: var(--shadow-sm);
+min-width: 140px;
+max-width: 140px;
+flex-shrink: 0;
+cursor: pointer;
+}
+.service-card:active { transform: scale(0.95); }
+.service-icon {
+width: 45px; height: 45px;
+background: var(--accent); border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 10px; color: white; font-size: 1.2em;
+}
+.service-card h3 { font-size: 0.9em; color: var(--primary); margin-bottom: 4px; }
+.service-card p { font-size: 0.75em; color: var(--text-light); line-height: 1.3; }
+.cleaning-section { background: white; overflow: hidden; }
+.cleaning-slider {
+position: relative;
+max-width: 100%;
+margin: 0 auto;
+overflow: hidden;
+height: 200px;
+}
+.slider-track {
+display: flex;
+width: max-content;
+animation: scrollRunning 25s linear infinite;
+}
+.slider-track:hover { animation-play-state: paused; }
+.slider-item {
+display: flex;
+width: 320px;
+flex-shrink: 0;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: var(--shadow-md);
+margin: 0 10px;
+background: white;
+}
+.ba-image {
+width: 50%;
+height: 200px;
+position: relative;
+overflow: hidden;
+}
+.ba-image img { width: 100%; height: 100%; object-fit: cover; }
+.ba-label {
+position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+background: rgba(0,0,0,0.85); color: white;
+padding: 4px 12px; border-radius: 12px; font-size: 0.75em; font-weight: 700; white-space: nowrap;
+}
+@keyframes scrollRunning {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+.products-section { background: var(--bg-alt); }
+.search-container { max-width: 600px; margin: 0 auto 20px; position: relative; }
+.search-box {
+width: 100%; padding: 12px 18px; padding-left: 40px;
+border: 2px solid #e2e8f0; border-radius: 10px; font-size: 0.95em; background: white;
+}
+.search-box:focus { outline: none; border-color: var(--accent); }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-light); }
+.search-suggestions {
+position: absolute; top: 100%; left: 0; right: 0;
+background: white; border-radius: 10px; box-shadow: var(--shadow-lg);
+margin-top: 5px; max-height: 300px; overflow-y: auto; z-index: 100; display: none;
+}
+.search-suggestions.active { display: block; }
+.suggestion-item { padding: 10px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; cursor: pointer; }
+.suggestion-item img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
+.suggestion-info h4 { font-size: 0.85em; color: var(--primary); }
+.suggestion-info p { font-size: 0.75em; color: var(--text-light); }
+.category-filters {
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+gap: 8px;
+justify-content: flex-start;
+padding: 5px 15px 15px;
+scrollbar-width: none;
+max-width: 1200px;
+margin: 0 auto;
+}
+.category-filters::-webkit-scrollbar { display: none; }
+.category-btn {
+padding: 6px 14px; background: white; border: 1px solid #e2e8f0;
+border-radius: 20px; font-weight: 600; font-size: 0.8em;
+cursor: pointer; white-space: nowrap; flex-shrink: 0; color: var(--text);
+}
+.category-btn:active, .category-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; }
+.product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); position: relative; }
+.product-badge {
+position: absolute; top: 8px; right: 8px;
+background: var(--success); color: white;
+padding: 4px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 700;
+cursor: pointer; border: none; z-index: 2;
+}
+.product-image { height: 160px; background: var(--bg-alt); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; }
+.product-info { padding: 15px; }
+.product-info h3 { font-size: 0.95em; color: var(--primary); margin-bottom: 4px; }
+.product-info p { font-size: 0.8em; color: var(--text-light); margin-bottom: 8px; }
+.product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.current-price { font-size: 1.2em; font-weight: 800; color: var(--accent); }
+.old-price { font-size: 0.85em; color: var(--text-light); text-decoration: line-through; }
+.product-actions { display: flex; gap: 6px; }
+.product-actions .btn { padding: 8px 12px; font-size: 0.8em; }
+.booking-section { background: white; }
+.booking-container { max-width: 700px; margin: 0 auto; background: var(--bg-alt); border-radius: 16px; padding: 25px 20px; border: 1px solid #e2e8f0; }
+.booking-container h2 { text-align: center; font-size: 1.4em; color: var(--primary); margin-bottom: 5px; }
+.booking-container > p { text-align: center; color: var(--text-light); margin-bottom: 20px; font-size: 0.9em; }
+.booking-form { display: grid; gap: 12px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-weight: 600; margin-bottom: 4px; color: var(--primary); font-size: 0.85em; }
+.form-group input, .form-group select, .form-group textarea {
+padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px;
+background: white; color: var(--text); font-size: 0.95em;
+}
+.form-group select {
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+background-repeat: no-repeat; background-position: right 12px center;
+-webkit-appearance: none; appearance: none;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.submit-btn { background: var(--success); color: white; padding: 12px; border: none; border-radius: 8px; font-size: 1em; font-weight: 700; cursor: pointer; margin-top: 5px; }
+.about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+.about-images { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.about-img { border-radius: 10px; overflow: hidden; height: 120px; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-img.large { grid-column: span 2; height: 150px; }
+.about-text h3 { font-size: 1.4em; color: var(--primary); margin-bottom: 10px; }
+.about-text p { color: var(--text-light); margin-bottom: 8px; font-size: 0.9em; }
+.features-list { list-style: none; margin-top: 15px; }
+.features-list li { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.85em; }
+.features-list i { color: var(--success); }
+footer { background: var(--primary); color: white; padding: 30px 15px 15px; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 20px; }
+.footer-col h3 { font-size: 1.1em; margin-bottom: 10px; }
+.footer-col p, .footer-col a { color: #94a3b8; margin-bottom: 5px; display: block; font-size: 0.85em; }
+.footer-col h4 { font-size: 1em; margin-bottom: 10px; }
+.social-links { display: flex; gap: 8px; margin-top: 10px; }
+.social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #64748b; font-size: 0.8em; }
+.whatsapp-float {
+position: fixed; bottom: 15px; right: 15px;
+background: #25D366; color: white !important;
+padding: 10px 16px; border-radius: 50px; font-weight: 700; font-size: 0.85em;
+box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999;
+display: flex; align-items: center; gap: 6px;
+animation: pulse-green 2.5s infinite;
+}
+@keyframes pulse-green {
+0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.modal-overlay {
+display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0,0,0,0.8); z-index: 10000;
+justify-content: center; align-items: center; padding: 15px;
+}
+.modal-overlay.active { display: flex; }
+.modal-content { background: white; border-radius: 16px; max-width: 380px; width: 100%; position: relative; animation: modalSlide 0.3s ease; }
+@keyframes modalSlide { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-close { position: absolute; top: 10px; right: 10px; background: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1em; box-shadow: var(--shadow-md); }
+.modal-body { padding: 25px 20px; text-align: center; }
+.modal-body h3 { font-size: 1.2em; color: var(--primary); margin-bottom: 8px; }
+.modal-body p { color: var(--text-light); margin-bottom: 20px; font-size: 0.9em; }
+.modal-actions { display: flex; flex-direction: column; gap: 8px; }
+.modal-actions .btn { width: 100%; padding: 12px; }
+.modal-buttons-row { display: flex; gap: 8px; }
+.modal-buttons-row .btn { flex: 1; }
+@media (max-width: 768px) {
+.main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 10px; box-shadow: var(--shadow-md); }
+.main-nav.active { display: flex; }
+.main-nav a { width: 100%; text-align: center; padding: 12px; }
+.mobile-menu-btn { display: block; }
+.sub-nav-inner { justify-content: flex-start; }
+.hero-text h2 { font-size: 1.5em; }
+.form-row { grid-template-columns: 1fr; }
+.about-content { grid-template-columns: 1fr; }
+.products-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header-top">
+<div class="header-top-content">
+<div class="header-contact">
+<a href="tel:6003074238"><i class="bi bi-telephone-fill"></i> <span>6003074238</span></a>
+<a href="https://instagram.com/carstudiohowly" target="_blank"><i class="bi bi-instagram"></i> <span>@carstudiohowly</span></a>
+</div>
+</div>
+</div>
+<div class="header-main">
+<div class="brand">
+<div class="brand-logo"><i class="bi bi-car-front-fill"></i></div>
+<div class="brand-text">
+<h1>CAR STUDIO HOWLY</h1>
+<p>Premium Car Care</p>
+</div>
+</div>
+<nav class="main-nav" id="mainNav">
+<a href="#home" class="active">Home</a>
+<a href="#services">Services</a>
+<a href="#cleaning">Cleaning</a>
+<a href="#products">Products</a>
+<a href="#booking">Book Now</a>
+<a href="#about">About</a>
+</nav>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="bi bi-list"></i></button>
+</div>
+</header>
+<nav class="sub-nav">
+<div class="sub-nav-inner">
+<a href="#cleaning"><i class="bi bi-droplet"></i> Washing</a>
+<a href="#products"><i class="bi bi-bag"></i> Accessories</a>
+<a href="#booking"><i class="bi bi-calendar-check"></i> Booking</a>
+<a href="#about"><i class="bi bi-info-circle"></i> About</a>
+</div>
+</nav>
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="hero-top">
+<div class="hero-search-icon" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'}); document.getElementById('productSearch').focus();">
+<i class="bi bi-search"></i> <span>Search Accessories</span>
+</div>
+</div>
+<div class="hero-text">
+<h2>Give Your Car <span>The Royal Treatment</span></h2>
+<p>Premium car wash, detailing, and accessories in Howly, Assam. Professional service, exceptional results.</p>
+<div class="hero-inline-stats">
+<span><i class="bi bi-award-fill"></i> 5+ Years Experience</span>
+<span>•</span>
+<span><i class="bi bi-people-fill"></i> 1000s Happy Customers</span>
+</div>
+<div class="hero-buttons">
+<a href="#booking" class="btn btn-success"><i class="bi bi-calendar-check"></i> Book Appointment</a>
+<a href="#products" class="btn btn-outline"><i class="bi bi-bag"></i> Browse Products</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="section-title reveal">
+<h2>Our Services</h2>
+<p>Professional car care services</p>
+</div>
+<div class="services-grid reveal">
+<div class="service-card" onclick="showServiceModal('Car Detailing')">
+<div class="service-icon"><i class="bi bi-sparkles"></i></div>
+<h3>Car Detailing</h3>
+<p>Deep cleaning and restoration</p>
+</div>
+<div class="service-card" onclick="showServiceModal('Accessories')">
+<div class="service-icon"><i class="bi bi-tools"></i></div>
+<h3>Accessories</h3>
+<p>Installation & fitting</p>
+</div>
+<div class="service-card" onclick="showServiceModal('PPF & Tinting')">
+<div class="service-icon"><i class="bi bi-shield-shaded"></i></div>
+<h3>PPF & Tinting</h3>
+<p>Protection & privacy</p>
+</div>
+</div>
+</section>
+<section class="section cleaning-section" id="cleaning">
+<div class="section-title reveal">
+<h2>Cleaning Car</h2>
+<p>See our professional cleaning work</p>
+</div>
+<div class="cleaning-slider reveal">
+<div class="slider-track">
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1503376763036-066120622c74?w=400" alt="After"><span class="ba-label">Interior Cleaning</span></div>
+</div>
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1600712243809-7a57a64907b3?w=400" alt="After"><span class="ba-label">Premium Wash</span></div>
+</div>
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=400" alt="After"><span class="ba-label">Complete Detailing</span></div>
+</div>
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1503376763036-066120622c74?w=400" alt="After"><span class="ba-label">Interior Cleaning</span></div>
+</div>
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1600712243809-7a57a64907b3?w=400" alt="After"><span class="ba-label">Premium Wash</span></div>
+</div>
+<div class="slider-item">
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=400" alt="Before"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=400" alt="After"><span class="ba-label">Complete Detailing</span></div>
+</div>
+</div>
+</div>
+</section>
+<div class="booking-banner-wrapper reveal">
+<a href="#booking" class="booking-banner">
+<i class="bi bi-calendar-check-fill"></i>
+<div>
+<strong>Book Your Appointment Now</strong>
+<span>Schedule your car service today</span>
+</div>
+<i class="bi bi-chevron-right"></i>
+</a>
+</div>
+<section class="section products-section" id="products">
+<div class="section-title reveal">
+<h2>Car Accessories</h2>
+<p>Premium quality accessories for your vehicle</p>
+</div>
+<div class="search-container reveal">
+<i class="bi bi-search search-icon"></i>
+<input type="text" class="search-box" id="productSearch" placeholder="Search products...">
+<div class="search-suggestions" id="searchSuggestions"></div>
+</div>
+<div class="category-filters reveal">
+<button class="category-btn active" onclick="filterCategory('all')">All</button>
+<button class="category-btn" onclick="filterCategory('Interior')">Interior</button>
+<button class="category-btn" onclick="filterCategory('Exterior')">Exterior</button>
+<button class="category-btn" onclick="filterCategory('Modification')">Modification</button>
+<button class="category-btn" onclick="filterCategory('Cover')">Cover</button>
+<button class="category-btn" onclick="filterCategory('Android')">Android</button>
+<button class="category-btn" onclick="filterCategory('Music')">Music</button>
+<button class="category-btn" onclick="filterCategory('PPF')">PPF</button>
+<button class="category-btn" onclick="filterCategory('GPS')">GPS</button>
+<button class="category-btn" onclick="filterCategory('Electronics')">Electronics</button>
+<button class="category-btn" onclick="filterCategory('Protection')">Protection</button>
+<button class="category-btn" onclick="filterCategory('Security')">Security</button>
+</div>
+<div class="products-grid" id="productsGrid"></div>
+</section>
+<section class="booking-section" id="booking">
+<div class="booking-container reveal">
+<h2><i class="bi bi-calendar-check"></i> Book Your Appointment</h2>
+<p>Schedule your car service today</p>
+<form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)">
+<div class="form-row">
+<div class="form-group">
+<label>Your Name *</label>
+<input type="text" id="customerName" required placeholder="Enter your full name">
+</div>
+<div class="form-group">
+<label>Phone Number *</label>
+<input type="tel" id="customerPhone" required placeholder="Enter your phone number">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Car Model *</label>
+<input type="text" id="carModel" required placeholder="e.g., Maruti Swift">
+</div>
+<div class="form-group">
+<label>Service Type *</label>
+<select id="serviceType" required>
+<option value="">Select Service</option>
+<option value="Car Wash">Car Wash</option>
+<option value="Car Detailing">Car Detailing</option>
+<option value="Interior Cleaning">Interior Cleaning</option>
+<option value="PPF & Tinting">PPF & Tinting</option>
+<option value="Ceramic Coating">Ceramic Coating</option>
+<option value="Accessories Installation">Accessories Installation</option>
+<option value="Multiple Services">Multiple Services</option>
+<option value="Other">Other</option>
+</select>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Preferred Date *</label>
+<input type="date" id="preferredDate" required>
+</div>
+<div class="form-group">
+<label>Preferred Time *</label>
+<select id="preferredTime" required>
+<option value="">Select Time</option>
+<option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+<option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+<option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+<option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+<option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+<option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+<option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
+<option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
+<option value="6:00 PM - 7:00 PM">6:00 PM - 7:00 PM</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label>Additional Notes (Optional)</label>
+<textarea id="additionalNotes" rows="2" placeholder="Any specific requirements?"></textarea>
+</div>
+<button type="submit" class="submit-btn"><i class="bi bi-whatsapp"></i> Book via WhatsApp</button>
+</form>
+</div>
+</section>
+<section class="section" id="about">
+<div class="about-content">
+<div class="about-images reveal">
+<div class="about-img large"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600" alt="Car Studio"></div>
+<div class="about-img"><img src="https://images.unsplash.com/photo-1600712243809-7a57a64907b3?w=400" alt="Car Wash"></div>
+<div class="about-img"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=400" alt="Accessories"></div>
+</div>
+<div class="about-text reveal">
+<h3>Welcome to CAR STUDIO HOWLY</h3>
+<p>Located near B.H College in Howly, Assam, we are your one-stop destination for all car care needs.</p>
+<p>We specialize in premium car washing, detailing, accessories installation, and protective services.</p>
+<ul class="features-list">
+<li><i class="bi bi-check-circle-fill"></i> Premium Quality Products</li>
+<li><i class="bi bi-check-circle-fill"></i> Experienced Professionals</li>
+<li><i class="bi bi-check-circle-fill"></i> Competitive Pricing</li>
+<li><i class="bi bi-check-circle-fill"></i> 100% Satisfaction Guarantee</li>
+</ul>
+<a href="#booking" class="btn btn-primary" style="margin-top: 15px;"><i class="bi bi-calendar-check"></i> Book Now</a>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-content">
+<div class="footer-col">
+<h3>CAR STUDIO HOWLY</h3>
+<p>Your trusted partner for premium car care services in Howly, Assam.</p>
+<div class="social-links">
+<a href="https://instagram.com/carstudiohowly" target="_blank"><i class="bi bi-instagram"></i></a>
+<a href="javascript:void(0)" onclick="showContactModal()"><i class="bi bi-whatsapp"></i></a>
+<a href="tel:6003074238"><i class="bi bi-telephone"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Quick Links</h4>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#products">Products</a>
+<a href="#booking">Book Appointment</a>
+</div>
+<div class="footer-col">
+<h4>Contact Info</h4>
+<p><i class="bi bi-geo-alt-fill"></i> Near B.H College, Howly</p>
+<p><i class="bi bi-telephone-fill"></i> 6003074238</p>
+</div>
+</div>
+<div class="footer-bottom"><p>&copy; 2025 CAR STUDIO HOWLY. All rights reserved.</p></div>
+</footer>
+<a href="javascript:void(0)" onclick="showContactModal()" class="whatsapp-float">
+<i class="bi bi-whatsapp"></i> Chat on WhatsApp
+</a>
+<div class="modal-overlay" id="contactModal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal('contactModal')"><i class="bi bi-x-lg"></i></button>
+<div class="modal-body">
+<h3>Get In Touch</h3>
+<p>How would you like to contact us?</p>
+<div class="modal-actions">
+<button class="btn btn-success" onclick="contactWhatsApp()"><i class="bi bi-whatsapp"></i> Chat on WhatsApp</button>
+<button class="btn btn-primary" onclick="callNow()"><i class="bi bi-telephone-fill"></i> Call Now</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="serviceModal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal('serviceModal')"><i class="bi bi-x-lg"></i></button>
+<div class="modal-body">
+<h3 id="serviceName">Service Name</h3>
+<p>Book this service now!</p>
+<div class="modal-actions">
+<button class="btn btn-success" onclick="bookService()"><i class="bi bi-calendar-check"></i> Book This Service</button>
+<button class="btn btn-outline" onclick="closeModal('serviceModal')"><i class="bi bi-x"></i> Close</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="discountModal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal('discountModal')"><i class="bi bi-x-lg"></i></button>
+<div class="modal-body">
+<h3>Discount Inquiry</h3>
+<p id="discountMessage">Do you want to know the discount?</p>
+<div class="modal-buttons-row">
+<button class="btn btn-success" onclick="confirmDiscount()"><i class="bi bi-check-lg"></i> Yes</button>
+<button class="btn btn-outline" onclick="closeModal('discountModal')"><i class="bi bi-x"></i> Close</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+const products = [
+{ id: 1, name: "Premium Leather Seat Cover", category: "Interior", price: 4500, oldPrice: 6000, image: "https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400", description: "High-quality leather seat covers" },
+{ id: 2, name: "Android Music System", category: "Android", price: 8500, oldPrice: 12000, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", description: "7-inch touchscreen with Bluetooth" },
+{ id: 3, name: "Alloy Wheels (Set of 4)", category: "Exterior", price: 18000, oldPrice: 24000, image: "https://images.unsplash.com/photo-1578844251758-2f71da64526f?w=400", description: "Premium alloy wheels 15-inch" },
+{ id: 4, name: "Car GPS Navigation System", category: "GPS", price: 3500, oldPrice: 5000, image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400", description: "Advanced GPS with live traffic" },
+{ id: 5, name: "Car Body Cover", category: "Cover", price: 1200, oldPrice: 1800, image: "https://images.unsplash.com/photo-1489824901289-203f37e8e0ef?w=400", description: "Waterproof premium car cover" },
+{ id: 6, name: "Wheel Covers (Set of 4)", category: "Exterior", price: 800, oldPrice: 1200, image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400", description: "Stylish wheel covers" },
+{ id: 7, name: "PPF (Paint Protection Film)", category: "PPF", price: 25000, oldPrice: 35000, image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=400", description: "Full body PPF with warranty" },
+{ id: 8, name: "Window Tinting Film", category: "Protection", price: 3500, oldPrice: 5000, image: "https://images.unsplash.com/photo-1600712243809-7a57a64907b3?w=400", description: "Premium window tinting" },
+{ id: 9, name: "Car Vacuum Cleaner", category: "Electronics", price: 1500, oldPrice: 2200, image: "https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400", description: "High-power portable vacuum" },
+{ id: 10, name: "Dashboard Camera (DVR)", category: "Electronics", price: 2800, oldPrice: 4000, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", description: "Full HD dash cam" },
+{ id: 11, name: "Car Perfume & Air Freshener", category: "Interior", price: 350, oldPrice: 500, image: "https://images.unsplash.com/photo-1600712243809-7a57a64907b3?w=400", description: "Long-lasting perfume" },
+{ id: 12, name: "Centre Lock System", category: "Security", price: 2500, oldPrice: 3500, image: "https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400", description: "Automatic centre locking" },
+{ id: 13, name: "Body Kit Modification", category: "Modification", price: 15000, oldPrice: 20000, image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400", description: "Complete body kit" },
+{ id: 14, name: "Music System Upgrade", category: "Music", price: 12000, oldPrice: 16000, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", description: "Premium sound system" }
+];
+const PHONE_PRIMARY = '6003074238';
+const WHATSAPP_NUMBER = '916003074238';
+let currentDiscountProduct = null;
+function toggleMobileMenu() { document.getElementById('mainNav').classList.toggle('active'); }
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function filterCategory(category) {
+document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+event.target.classList.add('active');
+loadProducts(category === 'all' ? products : products.filter(p => p.category === category));
+}
+function loadProducts(productsToShow) {
+const grid = document.getElementById('productsGrid');
+if (productsToShow.length === 0) {
+grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-light);">No products found</div>';
+return;
+}
+grid.innerHTML = productsToShow.map(p => `
+<div class="product-card reveal active">
+<button class="product-badge" onclick="showDiscountModal(${p.id})">DISCOUNT</button>
+<div class="product-image"><img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300/e2e8f0/64748b?text=${encodeURIComponent(p.name)}'"></div>
+<div class="product-info">
+<h3>${p.name}</h3>
+<p>${p.description}</p>
+<div class="product-price">
+<span class="current-price">₹${p.price.toLocaleString()}</span>
+${p.oldPrice ? `<span class="old-price">₹${p.oldPrice.toLocaleString()}</span>` : ''}
+</div>
+<div class="product-actions">
+<button class="btn btn-success" onclick="enquireProduct('${p.name}', ${p.price})"><i class="bi bi-whatsapp"></i> Enquire</button>
+<button class="btn btn-outline" onclick="showProductDetails(${p.id})"><i class="bi bi-info-circle"></i> Details</button>
+</div>
+</div>
+</div>
+`).join('');
+}
+loadProducts(products);
+const searchBox = document.getElementById('productSearch');
+const searchSuggestions = document.getElementById('searchSuggestions');
+searchBox.addEventListener('input', function(e) {
+const term = e.target.value.toLowerCase().trim();
+if (!term) { searchSuggestions.classList.remove('active'); loadProducts(products); return; }
+const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term));
+if (filtered.length > 0) {
+searchSuggestions.innerHTML = filtered.slice(0, 5).map(p => `
+<div class="suggestion-item" onclick="selectProduct(${p.id})">
+<img src="${p.image}" alt="${p.name}">
+<div class="suggestion-info"><h4>${p.name}</h4><p>₹${p.price.toLocaleString()} • ${p.category}</p></div>
+</div>
+`).join('');
+searchSuggestions.classList.add('active');
+loadProducts(filtered);
+} else {
+searchSuggestions.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-light);">No products found</div>';
+searchSuggestions.classList.add('active');
+loadProducts([]);
+}
+});
+function selectProduct(id) {
+const p = products.find(x => x.id === id);
+if (p) { searchBox.value = p.name; searchSuggestions.classList.remove('active'); }
+}
+document.addEventListener('click', function(e) {
+if (!searchBox.contains(e.target) && !searchSuggestions.contains(e.target)) searchSuggestions.classList.remove('active');
+});
+function showDiscountModal(id) {
+currentDiscountProduct = products.find(p => p.id === id);
+if (currentDiscountProduct) {
+document.getElementById('discountMessage').textContent = `Do you want to know the current discount for ${currentDiscountProduct.name}?`;
+document.getElementById('discountModal').classList.add('active');
+}
+}
+function confirmDiscount() {
+if (currentDiscountProduct) {
+window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi CAR STUDIO HOWLY, I want to know about the current discount for ${currentDiscountProduct.name}.`)}`, '_blank');
+closeModal('discountModal');
+}
+}
+function showProductDetails(id) {
+const p = products.find(x => x.id === id);
+if (p) window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi, I'm interested in ${p.name} (₹${p.price}). Details please?`)}`, '_blank');
+}
+function enquireProduct(name, price) {
+window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi, I want to know about ${name} (₹${price}). Is it available?`)}`, '_blank');
+}
+function handleBooking(e) {
+e.preventDefault();
+const msg = `*New Booking*%0AName: ${document.getElementById('customerName').value}%0APhone: ${document.getElementById('customerPhone').value}%0ACar: ${document.getElementById('carModel').value}%0AService: ${document.getElementById('serviceType').value}%0ADate: ${document.getElementById('preferredDate').value}%0ATime: ${document.getElementById('preferredTime').value}`;
+window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+}
+function showServiceModal(name) {
+document.getElementById('serviceName').textContent = name;
+document.getElementById('serviceModal').classList.add('active');
+}
+function bookService() { closeModal('serviceModal'); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' }); }
+function showContactModal() { document.getElementById('contactModal').classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function contactWhatsApp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank'); }
+function callNow() { window.location.href = `tel:${PHONE_PRIMARY}`; }
+window.onclick = function(e) { if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active'); }
+document.getElementById('preferredDate').setAttribute('min', new Date().toISOString().split('T')[0]);
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+a.addEventListener('click', function(e) {
+e.preventDefault();
+const t = document.querySelector(this.getAttribute('href'));
+if (t) { t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mainNav').classList.remove('active'); }
+});
+});
+</script>
+</body>
+</html>
