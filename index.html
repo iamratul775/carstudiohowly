@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="CAR STUDIO HOWLY - Premium Car Wash & Accessories.">
+<meta name="description" content="CAR STUDIO HOWLY - Premium Car Wash & Accessories in Howly, Assam. Professional car detailing, PPF, tinting, and premium accessories.">
+<meta name="keywords" content="car wash Howly, car detailing Assam, car accessories, PPF, window tinting, car studio, car care Howly">
+<meta name="author" content="CAR STUDIO HOWLY">
+<meta property="og:title" content="CAR STUDIO HOWLY | Premium Car Care">
+<meta property="og:description" content="Premium car wash, detailing, and accessories in Howly, Assam.">
+<meta property="og:url" content="https://carstudiohowly.in">
+<meta property="og:type" content="website">
 <title>CAR STUDIO HOWLY | Premium Car Care</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -696,6 +702,10 @@ justify-content: center; align-items: center; padding: 15px;
 </div>
 </div>
 </div>
+
+<!-- Netlify Identity Widget - FOR ADMIN PANEL LOGIN -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 <script>
 const products = [
 { id: 1, name: "Premium Leather Seat Cover", category: "Interior", price: 4500, oldPrice: 6000, image: "https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400", description: "High-quality leather seat covers" },
@@ -823,6 +833,49 @@ const t = document.querySelector(this.getAttribute('href'));
 if (t) { t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mainNav').classList.remove('active'); }
 });
 });
+
+// Netlify Identity Widget - Handles login/invite/reset password redirects
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", function(user) {
+    if (!user) {
+      window.netlifyIdentity.on("login", function() {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
 </script>
+
+<!-- Google Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "CAR STUDIO HOWLY",
+  "image": "https://carstudiohowly.in",
+  "description": "Premium Car Wash & Accessories in Howly, Assam. Professional car detailing, PPF, tinting, and premium accessories.",
+  "url": "https://carstudiohowly.in",
+  "telephone": "+91-6003074238",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Near B.H College",
+    "addressLocality": "Howly",
+    "addressRegion": "Assam",
+    "postalCode": "783348",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "priceRange": "₹₹",
+  "sameAs": [
+    "https://instagram.com/carstudiohowly"
+  ]
+}
+</script>
+
 </body>
 </html>
