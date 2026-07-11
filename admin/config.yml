@@ -6,6 +6,33 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "site_settings"
+    label: "Site Settings (Logo & Info)"
+    folder: "_data"
+    create: false
+    delete: false
+    editor:
+      preview: false
+    fields:
+      - {label: "Site Title", name: "siteTitle", widget: "string", default: "CAR STUDIO HOWLY"}
+      - {label: "Tagline", name: "tagline", widget: "string", default: "Premium Car Care"}
+      - {label: "Logo", name: "logo", widget: "image", default: "images/logo.png"}
+      - {label: "Phone Number", name: "phone", widget: "string", default: "6003074238"}
+      - {label: "WhatsApp Number", name: "whatsapp", widget: "string", default: "916003074238"}
+      - {label: "Instagram Handle", name: "instagram", widget: "string", default: "carstudiohowly"}
+      - {label: "Address", name: "address", widget: "string", default: "Near B.H College, Howly, Assam"}
+  
+  - name: "cleaning_gallery"
+    label: "Cleaning Gallery (Before/After)"
+    folder: "_cleaning"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Before Image", name: "beforeImage", widget: "image", required: true}
+      - {label: "After Image", name: "afterImage", widget: "image", required: true}
+      - {label: "Service Label", name: "label", widget: "string", required: true, default: "Interior Cleaning"}
+  
   - name: "products"
     label: "Products"
     folder: "_products"
