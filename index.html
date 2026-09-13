@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="Car Studio Howly - Best car washing, car accessories shop & car detailing in Howly, Assam. Rubul Car Studio near B.H College, Hotapara. Premium car care services: PPF, window tinting, alloy wheels, seat covers, music systems, car parts. Call 6003074238. Also known as Rubul Car Accessories, Ashraful Car Accessories.">
+<meta name="description" content="Car Studio Howly - Best car washing, car accessories shop & car detailing in Howly, Assam. Rubul Car Studio near B.H College, Hotapara. Premium car care services: PPF, window tinting, alloy wheels, seat covers, music systems, car parts. Call 6003074238.">
 <meta name="keywords" content="car studio howly, car washing howly, car accessories shop howly, car detailing howly, best car studio howly, rubul car studio, rubul car accessories, rubul car washing, rubul howly shop, ashraful car accessories, car wash near bh college, car accessories near hotapara, car studio near sb guest house, car detailing near me, car washing howly assam, car accessories barpeta, ppf howly, car tinting howly, alloy wheels howly, seat covers howly, music system howly, car parts howly, car cleaning howly, interior cleaning howly, car care howly, best car wash assam, car studio barpeta road, car accessories assam, car wash near me, car detailing near me, car accessories near me, car studio howly assam, car wash howly price, car detailing howly price, car accessories shop near bh college, car wash hotapara, car detailing hotapara, car accessories hotapara, car studio sb guest house, car wash sb guest house, car detailing sb guest house, car parts assam, car modification howly, car body kit howly, car gps howly, car electronics howly, car security howly, car protection howly, car cover howly, car perfume howly, car vacuum howly, dash cam howly, centre lock howly">
 <meta name="author" content="CAR STUDIO HOWLY - Rubul Car Studio">
 <meta name="robots" content="index, follow">
@@ -432,7 +432,7 @@ justify-content: center; align-items: center; padding: 15px;
 <div class="header-main">
 <div class="brand">
 <div class="brand-logo">
-  <img src="images/logo.png" alt="Car Studio Howly Logo - Best Car Washing & Accessories Shop in Howly, Assam" id="siteLogo">
+  <img src="images/logo.png" alt="Car Studio Howly Logo" id="siteLogo" onerror="this.style.display='none'">
 </div>
 <div class="brand-text">
 <h1 id="siteTitle">CAR STUDIO HOWLY</h1>
@@ -514,8 +514,8 @@ justify-content: center; align-items: center; padding: 15px;
 <div class="slider-track">
 <!-- Default fallback images -->
 <div class="slider-item">
-<div class="ba-image"><img src="images/before1.jpg" alt="Before Car Cleaning - Car Studio Howly" onerror="this.src='https://via.placeholder.com/400x300?text=Before'"><span class="ba-label">Before</span></div>
-<div class="ba-image"><img src="images/after1.jpg" alt="After Car Cleaning - Car Studio Howly" onerror="this.src='https://via.placeholder.com/400x300?text=After'"><span class="ba-label">Interior Cleaning</span></div>
+<div class="ba-image"><img src="images/before1.jpeg" alt="Before Car Cleaning" onerror="this.src='https://via.placeholder.com/400x300?text=Before'"><span class="ba-label">Before</span></div>
+<div class="ba-image"><img src="images/after1.jpeg" alt="After Car Cleaning" onerror="this.src='https://via.placeholder.com/400x300?text=After'"><span class="ba-label">Interior Cleaning</span></div>
 </div>
 </div>
 </div>
@@ -623,9 +623,9 @@ justify-content: center; align-items: center; padding: 15px;
 <section class="section" id="about">
 <div class="about-content">
 <div class="about-images reveal">
-<div class="about-img large"><img src="images/about1.jpg" alt="Car Studio Howly - Best Car Washing Shop in Howly, Assam" onerror="this.src='https://via.placeholder.com/600x300?text=About+Us'"></div>
-<div class="about-img"><img src="images/about2.jpg" alt="Car Wash Service in Howly - Car Studio Howly" onerror="this.src='https://via.placeholder.com/400x300?text=Services'"></div>
-<div class="about-img"><img src="images/about3.jpg" alt="Car Accessories Shop in Howly - Car Studio Howly" onerror="this.src='https://via.placeholder.com/400x300?text=Products'"></div>
+<div class="about-img large"><img src="images/about3.jpeg" alt="Car Studio Howly" onerror="this.src='https://via.placeholder.com/600x300?text=About+Us'"></div>
+<div class="about-img"><img src="images/about3.jpeg" alt="Car Wash Service" onerror="this.src='https://via.placeholder.com/400x300?text=Services'"></div>
+<div class="about-img"><img src="images/about3.jpeg" alt="Car Accessories Shop" onerror="this.src='https://via.placeholder.com/400x300?text=Products'"></div>
 </div>
 <div class="about-text reveal">
 <h3>Welcome to CAR STUDIO HOWLY - Rubul Car Studio</h3>
@@ -788,7 +788,7 @@ let siteSettings = {
   address: 'Near B.H College, Howly, Assam'
 };
 
-// Default products
+// Default products (Fallback if CMS is empty)
 let products = [
 { id: 1, name: "Premium Leather Seat Cover", category: "Interior", price: 4500, oldPrice: 6000, image: "https://images.unsplash.com/photo-1552930294-6b595f4c2ea9?w=400", description: "High-quality leather seat covers" },
 { id: 2, name: "Android Music System", category: "Android", price: 8500, oldPrice: 12000, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", description: "7-inch touchscreen with Bluetooth" },
@@ -808,6 +808,38 @@ let products = [
 
 let currentDiscountProduct = null;
 
+// Robust Markdown Parser
+function parseFrontmatter(markdown) {
+  try {
+    const lines = markdown.split('\n');
+    const data = {};
+    let inFrontmatter = false;
+    
+    for (let line of lines) {
+      if (line.trim() === '---') {
+        inFrontmatter = !inFrontmatter;
+        continue;
+      }
+      if (inFrontmatter) {
+        const colonIndex = line.indexOf(':');
+        if (colonIndex > -1) {
+          const key = line.substring(0, colonIndex).trim();
+          let value = line.substring(colonIndex + 1).trim();
+          // Remove surrounding quotes if present
+          if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+            value = value.slice(1, -1);
+          }
+          data[key] = value;
+        }
+      }
+    }
+    return data;
+  } catch (error) {
+    console.error('Error parsing markdown:', error);
+    return {};
+  }
+}
+
 // Load Site Settings
 async function loadSiteSettings() {
   try {
@@ -818,8 +850,8 @@ async function loadSiteSettings() {
       if (settingsFile) {
         const contentResponse = await fetch(settingsFile.download_url);
         const content = await contentResponse.text();
-        const settings = parseSiteSettings(content);
-        if (settings) {
+        const settings = parseFrontmatter(content);
+        if (Object.keys(settings).length > 0) {
           siteSettings = { ...siteSettings, ...settings };
           updateSiteSettings();
         }
@@ -830,73 +862,43 @@ async function loadSiteSettings() {
   }
 }
 
-function parseSiteSettings(markdown) {
-  try {
-    const lines = markdown.split('\n');
-    const settings = {};
-    let inFrontmatter = false;
-    
-    for (let line of lines) {
-      if (line.trim() === '---') {
-        inFrontmatter = !inFrontmatter;
-        continue;
-      }
-      if (inFrontmatter) {
-        const [key, value] = line.split(':');
-        if (key && value) {
-          const cleanKey = key.trim();
-          let cleanValue = value.trim().replace(/^["']|["']$/g, '');
-          settings[cleanKey] = cleanValue;
-        }
-      }
-    }
-    return settings;
-  } catch (error) {
-    console.error('Error parsing site settings:', error);
-    return null;
-  }
-}
-
 function updateSiteSettings() {
-  // Update logo
   const logoImg = document.getElementById('siteLogo');
   if (logoImg && siteSettings.logo) {
-    logoImg.src = siteSettings.logo;
+    // Handle both relative and absolute paths from CMS
+    logoImg.src = siteSettings.logo.startsWith('http') ? siteSettings.logo : (siteSettings.logo.startsWith('/') ? siteSettings.logo : '/' + siteSettings.logo);
+    logoImg.style.display = 'block';
   }
   
-  // Update title and tagline
   const titleEl = document.getElementById('siteTitle');
   const taglineEl = document.getElementById('siteTagline');
   const footerTitle = document.getElementById('footerTitle');
   
-  if (titleEl) titleEl.textContent = siteSettings.siteTitle;
-  if (taglineEl) taglineEl.textContent = siteSettings.tagline;
-  if (footerTitle) footerTitle.textContent = siteSettings.siteTitle;
+  if (titleEl && siteSettings.siteTitle) titleEl.textContent = siteSettings.siteTitle;
+  if (taglineEl && siteSettings.tagline) taglineEl.textContent = siteSettings.tagline;
+  if (footerTitle && siteSettings.siteTitle) footerTitle.textContent = siteSettings.siteTitle;
   
-  // Update phone numbers
   const phoneLinks = document.querySelectorAll('#headerPhone, #footerPhone');
   const phoneTexts = document.querySelectorAll('#footerPhoneText');
   
   phoneLinks.forEach(el => {
-    if (el) el.setAttribute('href', `tel:${siteSettings.phone}`);
+    if (el && siteSettings.phone) el.setAttribute('href', `tel:${siteSettings.phone}`);
   });
   
   phoneTexts.forEach(el => {
-    if (el) el.textContent = siteSettings.phone;
+    if (el && siteSettings.phone) el.textContent = siteSettings.phone;
   });
   
-  // Update Instagram
   const instaLinks = document.querySelectorAll('#headerInstagram, #footerInstagram');
   instaLinks.forEach(el => {
-    if (el) {
+    if (el && siteSettings.instagram) {
       el.setAttribute('href', `https://instagram.com/${siteSettings.instagram}`);
       el.innerHTML = `<i class="bi bi-instagram"></i> <span>@${siteSettings.instagram}</span>`;
     }
   });
   
-  // Update address
   const addressEl = document.getElementById('footerAddress');
-  if (addressEl) addressEl.textContent = siteSettings.address;
+  if (addressEl && siteSettings.address) addressEl.textContent = siteSettings.address;
 }
 
 // Load Cleaning Gallery
@@ -911,11 +913,11 @@ async function loadCleaningGallery() {
         mdFiles.map(async file => {
           const contentResponse = await fetch(file.download_url);
           const content = await contentResponse.text();
-          return parseCleaningGallery(content);
+          return parseFrontmatter(content);
         })
       );
       
-      const validItems = galleryItems.filter(item => item !== null);
+      const validItems = galleryItems.filter(item => item.title);
       if (validItems.length > 0) {
         renderCleaningGallery(validItems);
       }
@@ -925,58 +927,30 @@ async function loadCleaningGallery() {
   }
 }
 
-function parseCleaningGallery(markdown) {
-  try {
-    const lines = markdown.split('\n');
-    const item = {};
-    let inFrontmatter = false;
-    
-    for (let line of lines) {
-      if (line.trim() === '---') {
-        inFrontmatter = !inFrontmatter;
-        continue;
-      }
-      if (inFrontmatter) {
-        const [key, value] = line.split(':');
-        if (key && value) {
-          const cleanKey = key.trim();
-          let cleanValue = value.trim().replace(/^["']|["']$/g, '');
-          item[cleanKey] = cleanValue;
-        }
-      }
-    }
-    
-    return {
-      title: item.title || 'Cleaning',
-      beforeImage: item.beforeImage || 'images/before1.jpg',
-      afterImage: item.afterImage || 'images/after1.jpg',
-      label: item.label || 'Interior Cleaning'
-    };
-  } catch (error) {
-    console.error('Error parsing cleaning gallery:', error);
-    return null;
-  }
-}
-
 function renderCleaningGallery(items) {
   const slider = document.querySelector('#cleaningSlider .slider-track');
   if (!slider) return;
   
   slider.innerHTML = '';
   
+  // Duplicate items for infinite scroll effect
   const displayItems = [...items, ...items];
   
   displayItems.forEach(item => {
+    const beforeImg = item.beforeImage || 'https://via.placeholder.com/400x300?text=Before';
+    const afterImg = item.afterImage || 'https://via.placeholder.com/400x300?text=After';
+    const label = item.label || 'Cleaning';
+    
     const sliderItem = document.createElement('div');
     sliderItem.className = 'slider-item';
     sliderItem.innerHTML = `
       <div class="ba-image">
-        <img src="${item.beforeImage}" alt="Before ${item.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Before'">
+        <img src="${beforeImg}" alt="Before ${item.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Before'">
         <span class="ba-label">Before</span>
       </div>
       <div class="ba-image">
-        <img src="${item.afterImage}" alt="After ${item.title}" onerror="this.src='https://via.placeholder.com/400x300?text=After'">
-        <span class="ba-label">${item.label}</span>
+        <img src="${afterImg}" alt="After ${item.title}" onerror="this.src='https://via.placeholder.com/400x300?text=After'">
+        <span class="ba-label">${label}</span>
       </div>
     `;
     slider.appendChild(sliderItem);
@@ -995,63 +969,30 @@ async function loadCMSProducts() {
         mdFiles.map(async file => {
           const contentResponse = await fetch(file.download_url);
           const content = await contentResponse.text();
-          return parseMarkdownProduct(content);
+          return parseFrontmatter(content);
         })
       );
       
-      if (cmsProducts.length > 0 && cmsProducts[0]) {
-        products = cmsProducts.filter(p => p !== null);
-        loadProducts(products);
+      const validProducts = cmsProducts.filter(p => p.name).map(p => ({
+        id: parseInt(p.id) || 0,
+        name: p.name || 'Unnamed Product',
+        category: p.category || 'Other',
+        price: parseInt(p.price) || 0,
+        oldPrice: p.oldPrice ? parseInt(p.oldPrice) : null,
+        image: p.image || 'https://via.placeholder.com/400x300?text=No+Image',
+        description: p.description || ''
+      }));
+      
+      if (validProducts.length > 0) {
+        products = validProducts;
       }
+      loadProducts(products);
+    } else {
+      loadProducts(products); // Fallback to defaults
     }
   } catch (error) {
     console.log('Using default products');
     loadProducts(products);
-  }
-}
-
-function parseMarkdownProduct(markdown) {
-  try {
-    const lines = markdown.split('\n');
-    const product = {};
-    let inFrontmatter = false;
-    
-    for (let line of lines) {
-      if (line.trim() === '---') {
-        inFrontmatter = !inFrontmatter;
-        continue;
-      }
-      if (inFrontmatter) {
-        const [key, value] = line.split(':');
-        if (key && value) {
-          const cleanKey = key.trim();
-          let cleanValue = value.trim();
-          
-          if (cleanValue.startsWith('"') && cleanValue.endsWith('"')) {
-            cleanValue = cleanValue.slice(1, -1);
-          }
-          
-          if (cleanKey === 'id' || cleanKey === 'price' || cleanKey === 'oldPrice') {
-            product[cleanKey] = parseInt(cleanValue) || 0;
-          } else {
-            product[cleanKey] = cleanValue;
-          }
-        }
-      }
-    }
-    
-    return {
-      id: product.id,
-      name: product.name || 'Unnamed Product',
-      category: product.category || 'Other',
-      price: product.price || 0,
-      oldPrice: product.oldPrice || null,
-      image: product.image || 'https://via.placeholder.com/400x300',
-      description: product.description || ''
-    };
-  } catch (error) {
-    console.error('Error parsing markdown:', error);
-    return null;
   }
 }
 
@@ -1060,11 +1001,13 @@ const observer = new IntersectionObserver((entries) => {
 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
 function filterCategory(category) {
 document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
 event.target.classList.add('active');
 loadProducts(category === 'all' ? products : products.filter(p => p.category === category));
 }
+
 function loadProducts(productsToShow) {
 const grid = document.getElementById('productsGrid');
 if (productsToShow.length === 0) {
@@ -1215,66 +1158,21 @@ if (window.netlifyIdentity) {
     "https://instagram.com/carstudiohowly"
   ],
   "areaServed": [
-    {
-      "@type": "City",
-      "name": "Howly"
-    },
-    {
-      "@type": "Place",
-      "name": "Hotapara"
-    },
-    {
-      "@type": "Place",
-      "name": "B.H College"
-    },
-    {
-      "@type": "Place",
-      "name": "S.B Guest House"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Barpeta District"
-    }
+    { "@type": "City", "name": "Howly" },
+    { "@type": "Place", "name": "Hotapara" },
+    { "@type": "Place", "name": "B.H College" },
+    { "@type": "Place", "name": "S.B Guest House" },
+    { "@type": "AdministrativeArea", "name": "Barpeta District" }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Car Care Services",
     "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Car Washing"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Car Detailing"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "PPF Installation"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Window Tinting"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Car Accessories Installation"
-        }
-      }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Car Washing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Car Detailing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPF Installation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Tinting" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Car Accessories Installation" } }
     ]
   }
 }
